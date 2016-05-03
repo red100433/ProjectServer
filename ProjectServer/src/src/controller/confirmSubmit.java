@@ -40,15 +40,14 @@ public class confirmSubmit extends HttpServlet {
 		String confirmEquation = request.getParameter("equation");
 		String page = null;
 		
-//		System.out.println(confirmEquation);
+		System.out.println(confirmEquation);
 		// equation convert to Mathematica
 		MathematicaConvert mm = new MathematicaConvert();
 		mm.setEquation(confirmEquation);
-		
+		String equation = mm.calcMathematica();
+				
+		request.setAttribute("equation", equation);
 		request.setAttribute("confirmEquation", confirmEquation);
-		request.setAttribute("getexpr", mm.getexpr());
-		request.setAttribute("getimg1", mm.getImage1());
-		request.setAttribute("getimg2", mm.getImage2());
 		page = "/projectjsps/responseValue.jsp";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
